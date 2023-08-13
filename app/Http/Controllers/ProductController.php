@@ -33,14 +33,14 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        if (!empty($request->image)) {
-            $product->image = Helper::fileUpload($request->image);
+
+        $product = $this->productService->store($request);
+
+        if (is_null($product) === false) {
+            return $this->returnResponse('success', 'Product created successfully', $product, 201);
+        } else {
+            return $this->returnResponse('success', 'Product not created', [], 204);
         }
-        $request->offsetUnset('image');
-        $product->fill($request->all());
-        $product->save();
-        return $this->returnResponse('success', 'Product created successfully', $product, 201);
 
     }
 

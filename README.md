@@ -8,7 +8,7 @@
 
 ### Switch to the repo folder
 
-    cd spa-ecommerce
+    cd inventory-management
 
 ### Install all the dependencies using composer
 

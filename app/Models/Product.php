@@ -19,4 +19,10 @@ class Product extends Model
             $model->created_by = auth()->id();
         });
     }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+
+    }
 }

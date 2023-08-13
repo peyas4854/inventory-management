@@ -19,8 +19,9 @@ class ProductResource extends JsonResource
             'id'          => $this->id,
             'name'        => $this->name,
             'price'       => $this->price,
+            'in_stock'       => $this->stock ? $this->stock->quantity:0,
             'description' => $this->description,
-            'image'       => Storage::disk('public')->url("products/{$this->image}"),
+            'image'       => $this->image ? Storage::disk('public')->url("products/{$this->image}"):null,
         ];
     }
 }
