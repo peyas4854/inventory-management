@@ -58,7 +58,7 @@
                             </template>
                             <template v-else>
                                 <tr>
-                                    <td colspan="5" class="text-center fs-2">
+                                    <td colspan="6" class="text-center fs-2">
                                         No data Found!
                                     </td>
                                 </tr>

@@ -19,9 +19,13 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'price' => $this->price,
-            'in_stock' => $this->stock ? $this->stock->quantity : 0,
+            'in_stock' => $this->stockAvailable($this->in_stock_sum_quantity,$this->out_stock_sum_quantity),
             'description' => $this->description,
             'image' => $this->image ? Storage::disk('public')->url("products/{$this->image}") : null,
         ];
     }
+    public function stockAvailable($inStock,$outStock){
+        return $inStock - $outStock;
+    }
+
 }

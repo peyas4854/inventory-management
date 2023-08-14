@@ -19,10 +19,17 @@ class Product extends Model
             $model->created_by = auth()->id();
         });
     }
-
     public function stock()
     {
-        return $this->hasOne(Stock::class);
+        return $this->hasMany(Stock::class);
+    }
 
+    public function inStock()
+    {
+        return $this->hasMany(Stock::class)->where('type','in');
+    }
+    public function outStock()
+    {
+        return $this->hasMany(Stock::class)->where('type','out');
     }
 }

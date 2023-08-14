@@ -13,7 +13,8 @@ class ProductService
      */
     public function index($request)
     {
-        $query = Product::query();
+        $query = Product::query()->withSum('inStock','quantity')
+        ->withSum('outStock','quantity');
         if ($request->filled('search')) {
             $query->where('name', 'LIKE', "%{$request->search}%");
         }
@@ -35,7 +36,8 @@ class ProductService
         if (!is_null($product)) {
             $product->stock()->create([
                 'product_id' => $product->id,
-                'quantity' => $request->stock
+                'quantity' => $request->stock,
+                'type' => 'in',
             ]);
         }
 
@@ -45,7 +47,9 @@ class ProductService
 
     public function allProduct()
     {
-        return Product::query()->latest()->get();
+
+        return Product::query()->withSum('inStock','quantity')
+            ->withSum('outStock','quantity')->latest()->get();
 
     }
 }

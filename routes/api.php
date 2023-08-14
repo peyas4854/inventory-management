@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/product', ProductController::class);
     Route::get('/get/product', [ProductController::class,'allProduct']);
+    Route::apiResource('/invoice', InvoiceController::class);
+
 
 });
 // Frontend Routes

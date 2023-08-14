@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->enum('type',['in','out']);
+            $table->date('date');
+            $table->string('invoice_no');
+            $table->foreignId('supplier_id');
+            $table->longText('note');
+            $table->float('sub_total', 10, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('invoices');
     }
 };

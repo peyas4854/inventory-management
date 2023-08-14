@@ -23,7 +23,7 @@ class ProductController extends BaseController
      */
     public function index(Request $request)
     {
-        $products = $this->productService->index($request);
+         $products = $this->productService->index($request);
         return ProductResource::collection($products);
     }
 
