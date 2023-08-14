@@ -31,6 +31,8 @@ ApiService.init();
 //Global Component register
 import {RotateSquare2} from 'vue-loading-spinner'
 
+
+
 // route check
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requireAuth)) {
@@ -49,7 +51,6 @@ router.beforeEach((to, from, next) => {
 
     //if user logged and user state login page then redirect to dashboard
     if (to.name == 'login') {
-        console.log("five");
         if (JwtService.getToken()) {
             if (JwtService.getLoggedUser() == 'admin') {
                 next({
@@ -70,7 +71,6 @@ router.beforeEach((to, from, next) => {
     //Logged user data return then commit in vuex
     function authUser(type) {
         ApiService.get(`/${type}/auth`).then(response => {
-            console.log('res', response.data);
             store.commit("SET_USER", response.data);
             next()
         }).catch(error => {

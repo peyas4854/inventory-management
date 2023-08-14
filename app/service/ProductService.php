@@ -42,4 +42,10 @@ class ProductService
         $product ? $product : null;
 
     }
+
+    public function allProduct()
+    {
+        return Product::query()->latest()->get();
+
+    }
 }

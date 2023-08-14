@@ -26,6 +26,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/product', ProductController::class);
+    Route::get('/get/product', [ProductController::class,'allProduct']);
+
 });
 // Frontend Routes
 Route::group(['prefix' => 'frontend'], function () {

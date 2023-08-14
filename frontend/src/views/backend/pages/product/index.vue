@@ -111,6 +111,7 @@ export default {
                 page: this.pagination.current_page
             }
             ApiService.get('/product', {params: params}).then((response) => {
+                console.log('response',response.data)
                 this.products = response.data.data;
                 this.pagination = response.data.meta;
                 this.loader = false;

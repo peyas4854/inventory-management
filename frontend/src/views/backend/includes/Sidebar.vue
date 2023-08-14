@@ -13,6 +13,12 @@
                          :class="$route.path == '/product' ? 'active' : ''"
             >Product</router-link>
         </li>
+        <li class="nav-item">
+            <router-link to="/invoice" class="nav-link text-light "
+
+                         :class="$route.path == '/invoice' ? 'active' : ''"
+            >Invoice</router-link>
+        </li>
 
     </ul>
 

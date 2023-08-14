@@ -31,6 +31,22 @@ const BackEndRoutes = [
             title: 'Product Edit',
         }
     },
+    {
+        path: '/invoice',
+        name: 'invoice',
+        component: () => import('./pages/invoice/index'),
+        meta     : {
+            title: 'Invoice List',
+        }
+    },
+    {
+        path: '/invoice/create',
+        name: 'invoiceCreate',
+        component: () => import('./pages/invoice/create'),
+        meta     : {
+            title: 'Invoice Create',
+        }
+    },
 
 ]
 

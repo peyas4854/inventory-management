@@ -84,4 +84,11 @@ class ProductController extends BaseController
         $product->delete();
         return $this->returnResponse("success", "Product Deleted successfully");
     }
+
+    public function allProduct()
+    {
+        $products = $this->productService->allProduct();
+        return ProductResource::collection($products);
+
+    }
 }
