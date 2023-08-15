@@ -16,14 +16,21 @@
                                     <div class="col-md-4 mb-3">
                                         <label for="name" class="form-label d-block">Date <span
                                             class="text-danger">*</span></label>
-                                        <date-picker v-model:value="invoiceForm.date"
+                                        <date-picker v-model:value="invoiceForm.date" class="d-block"
                                                      placeholder="Pick a date"></date-picker>
+
+                                        <span v-if="errors.date" class="text-danger"> {{
+                                                errors.date[0]
+                                            }}</span>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="name" class="form-label">Invoice No <span
                                             class="text-danger">*</span></label>
                                         <input type="text" class="form-control" v-model="invoiceForm.invoice_no"
                                                aria-describedby="emailHelp">
+                                        <span v-if="errors.invoice_no" class="text-danger"> {{
+                                                errors.invoice_no[0]
+                                            }}</span>
                                     </div>
 
                                     <div class="col-md-4 mb-3">
@@ -116,6 +123,9 @@
                                         <label for="name" class="form-label">Total</label>
                                         <input type="text" class="form-control" readonly
                                                v-model="invoiceForm.sub_total">
+                                        <span v-if="errors.sub_total" class="text-danger"> {{
+                                                errors.sub_total[0]
+                                            }}</span>
                                     </div>
                                     <hr>
                                     <div class="col-md-12 text-center">
@@ -154,6 +164,7 @@ export default {
             products: [],
             invoiceItem: [],
             invoiceForm: {},
+            errors:{},
         }
     },
     mounted() {
@@ -240,7 +251,11 @@ export default {
                     sweetalert.success(response.data.message);
                     this.$router.push({name: "invoice"});
                 }).catch((error) => {
-                console.log('error', error)
+                // console.log('error', error.response)
+                if(error.response.status == 422 ){
+                    console.log('error', error.response.data.errors)
+                    this.errors = error.response.data.errors;
+                }
             });
 
 

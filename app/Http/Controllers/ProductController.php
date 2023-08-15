@@ -23,7 +23,7 @@ class ProductController extends BaseController
      */
     public function index(Request $request)
     {
-         $products = $this->productService->index($request);
+        $products = $this->productService->index($request);
         return ProductResource::collection($products);
     }
 
@@ -33,8 +33,8 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-
-         $product = $this->productService->store($request);
+        // Store product with stock
+        $product = $this->productService->store($request);
 
         if (is_null($product) === false) {
             return $this->returnResponse('success', 'Product created successfully', $product, 201);
@@ -58,6 +58,7 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product)
     {
+        // TODO : only product part update , product stock part will implement later.
         $data = [
             'name'        => $request->name,
             'price'       => $request->price,
@@ -70,6 +71,8 @@ class ProductController extends BaseController
             $data['image'] = Helper::fileUpload($request->image);
         }
         $product->update($data);
+
+
         return $this->returnResponse("success", "Product Updated successfully", $product);
     }
 
@@ -85,6 +88,10 @@ class ProductController extends BaseController
         return $this->returnResponse("success", "Product Deleted successfully");
     }
 
+    /**
+     * get all product for dropdown
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function allProduct()
     {
         $products = $this->productService->allProduct();

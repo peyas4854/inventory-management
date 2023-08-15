@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/product', ProductController::class);
     Route::get('/get/product', [ProductController::class,'allProduct']);
-    Route::apiResource('/invoice', InvoiceController::class);
+    Route::apiResource('/invoice', InvoiceController::class)->only('index','store');
 
 
 });

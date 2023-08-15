@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InvoiceStoreRequest;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
 use App\service\InvoiceService;
@@ -27,21 +28,18 @@ class InvoiceController extends Controller
     {
         $invoice = $this->invoiceService->index($request);
         return InvoiceResource::collection($invoice);
-
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InvoiceStoreRequest $request)
     {
         $items = json_decode($request->itemData);
-        foreach ($items as $val) {
-            if ($val->quantity == '') {
-                return response()->json(['message' => 'Please select an item'], 400);
-            }
+        if (count($items) == 0) {
+            return response()->json(['message' => 'Please select an item'], 422);
         }
+
         DB::beginTransaction();
         try {
             $this->invoiceService->store($request);
@@ -54,30 +52,5 @@ class InvoiceController extends Controller
             return response()->json(['message' => $message], 400);
         }
 
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Invoice $invoice)
-    {
-        //
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Invoice $invoice)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Invoice $invoice)
-    {
-        //
     }
 }
