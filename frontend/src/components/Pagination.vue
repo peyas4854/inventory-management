@@ -3,7 +3,7 @@
         class="pagination-section align-items-center d-flex flex-column flex-sm-row gap-2 gap-sm-0 justify-content-between my-4 my-sm-5"
         aria-label="...">
         <div class="show">
-            <select v-model="$parent.form.per_page" @change="$parent.getProducts()" class="form-select">
+            <select v-model="$parent.form.per_page" @change="callParentMethod" class="form-select">
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="50">50</option>
@@ -61,6 +61,9 @@ export default {
             }
             this.pagination.current_page = page;
             this.$emit('paginate');
+        },
+        callParentMethod(){
+            this.$emit('callParentMethod');
         }
     },
 

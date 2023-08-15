@@ -34,7 +34,7 @@ class ProductController extends BaseController
     public function store(Request $request)
     {
 
-        $product = $this->productService->store($request);
+         $product = $this->productService->store($request);
 
         if (is_null($product) === false) {
             return $this->returnResponse('success', 'Product created successfully', $product, 201);

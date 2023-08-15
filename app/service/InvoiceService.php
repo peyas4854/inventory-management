@@ -9,6 +9,15 @@ use Carbon\Carbon;
 
 class InvoiceService
 {
+    public function index($request)
+    {
+        $query = Invoice::query();
+        if ($request->filled('search')) {
+            $query->where('invoice_no', 'LIKE', "%{$request->search}%");
+        }
+        return $query->orderBy('id', 'desc')->paginate($request->per_page);
+
+    }
 
     public function store($request)
     {

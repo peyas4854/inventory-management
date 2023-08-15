@@ -41,7 +41,7 @@ class ProductService
             ]);
         }
 
-        $product ? $product : null;
+        return $product ? $product : null;
 
     }
 
