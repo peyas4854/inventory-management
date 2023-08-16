@@ -42,14 +42,21 @@ router.beforeEach((to, from, next) => {
                 params: {nextUrl: to.fullPath}
             })
         } else {
-            authUser(JwtService.getLoggedUser())
-
+            // only admin can access dashboard
+            if (JwtService.getLoggedUser() == 'user') {
+                next({
+                    name  : 'home',
+                    params: {nextUrl: to.fullPath}
+                })
+            } else {
+                authUser(JwtService.getLoggedUser())
+            }
         }
     } else if (JwtService.getLoggedUser() == 'user') {
         authUser('user')
     }
 
-    //if user logged and user state login page then redirect to dashboard
+    //If user logged and user state login page then redirect to dashboard
     if (to.name == 'login') {
         if (JwtService.getToken()) {
             if (JwtService.getLoggedUser() == 'admin') {
@@ -59,7 +66,6 @@ router.beforeEach((to, from, next) => {
                 })
 
             } else {
-                console.log('home home ')
                 next({
                     name  : 'home',
                     params: {nextUrl: to.fullPath}

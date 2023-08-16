@@ -64,7 +64,6 @@ export default {
                     console.log('res',res)
                     JwtService.destroyToken();
                     store.commit("LOG_OUT", {});
-                    SweetAlert.info(res.data.message)
                     this.$router.push({name: "login"});
                 }).catch(error => {
                     console.log('error', error);

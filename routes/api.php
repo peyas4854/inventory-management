@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 // Frontend Routes
 Route::group(['prefix' => 'frontend'], function () {
     Route::get('/products', [\App\Http\Controllers\Front\FrontEndController::class, 'getProducts']);
+    Route::post('/logout', [\App\Http\Controllers\Front\FrontEndController::class, 'logout'])->middleware('auth:sanctum');;
+
 });
 Route::get('/user/auth', function (Request $request) {
     return $request->user();

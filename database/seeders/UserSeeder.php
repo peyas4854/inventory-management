@@ -23,6 +23,14 @@ class UserSeeder extends Seeder
                 "created_at" => "2022-04-01 20:36:13",
                 "updated_at" => "2022-04-01 20:36:13",
             ),
+            array(
+                'name'     => "test user 1",
+                'email'    => "user@gmail.com",
+                'password' => Hash::make(12345678),
+                'is_admin'=>0,
+                "created_at" => "2022-04-01 20:36:13",
+                "updated_at" => "2022-04-01 20:36:13",
+            ),
         );
         User::query()->insert($data);
     }

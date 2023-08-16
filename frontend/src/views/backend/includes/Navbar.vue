@@ -35,10 +35,8 @@ export default {
             const token = JwtService.getToken();
             if (typeof token != "undefined") {
                 ApiService.post('/logout').then(res => {
-
                     JwtService.destroyToken();
                     store.commit("LOG_OUT", {});
-                    SweetAlert.info(res.data.message)
                     this.$router.push({name: "login"});
                 }).catch(error => {
                     console.log('error', error);

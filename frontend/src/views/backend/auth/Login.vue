@@ -70,7 +70,6 @@ export default {
                 localStorage.setItem("expires_at", res.data.expires_at);
                 ApiService.init();
                 store.commit("REDIRECT_AFTER_LOGIN", res.data.user);
-                SweetAlert.success(res.data.message);
             }).catch((errors) => {
                 SweetAlert.error(errors.response.data.message);
                 console.log('error', errors.response.data.message);
