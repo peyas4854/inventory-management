@@ -58,7 +58,7 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product)
     {
-        // TODO : only product part update , product stock part will implement later.
+        // TODO : only product part update , product stock part update will implement later.
         $data = [
             'name'        => $request->name,
             'price'       => $request->price,

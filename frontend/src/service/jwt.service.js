@@ -1,7 +1,7 @@
-const ACCESS_TOKEN      = "access_token";
-const REFRESH_TOKEN     = 'refresh_token';
-const EXPIRE_AT         = 'expires_at';
-const LOGGED_USER   = 'logged_user';
+const ACCESS_TOKEN = "access_token";
+const REFRESH_TOKEN = 'refresh_token';
+const EXPIRE_AT = 'expires_at';
+const LOGGED_USER = 'logged_user';
 
 export const getToken = () => {
     return window.localStorage.getItem(ACCESS_TOKEN);
@@ -27,4 +27,4 @@ export const destroyToken = () => {
     window.localStorage.removeItem(LOGGED_USER);
 };
 
-export default {getToken, saveToken, destroyToken,saveLoggedUser,getLoggedUser};
+export default {getToken, saveToken, destroyToken, saveLoggedUser, getLoggedUser};
